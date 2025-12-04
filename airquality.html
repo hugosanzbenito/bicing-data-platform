@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="airquality.js"></script>
+    <title>Notify air quality by IP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #f4f4f4;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+        }
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 8px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .stations-container {
+            margin-top: 20px;
+            max-height: 400px; /* Altura máxima para el contenedor de estaciones */
+            overflow-y: auto;  /* Habilita el desplazamiento vertical */
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .station-label {
+            display: block;
+            margin: 5px 0;
+        }
+        #searchInput {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Notify air quality by IP</h2>
+        <input type="text" id="clientId" placeholder="User_ID">
+        <input type="text" id="searchInput" placeholder="Buscar usuarios por ID..." onkeyup="filterClients()">
+
+
+        <button onclick="Funcionparaciudad()">Buscar Cliente</button>
+    </div>
+
+    <script>
+        
+    </script>
+
+</body>
+</html>

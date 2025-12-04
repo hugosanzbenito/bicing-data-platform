@@ -1,0 +1,44 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+version="4.0">
+	<display-name>at-lab</display-name>
+	<servlet>
+		<servlet-name>ATlabStations</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.classnames</param-name>
+			<param-value>StationAPI</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>ATlabClients</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.classnames</param-name>
+			<param-value>ClientsAPI</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>ATlabNotifications</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.classnames</param-name>
+			<param-value>NotificationsAPI</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ATlabStations</servlet-name>
+		<url-pattern>/at/stations/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ATlabClients</servlet-name>
+		<url-pattern>/at/clients/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ATlabNotifications</servlet-name>
+		<url-pattern>/at/notifications/*</url-pattern>
+	</servlet-mapping>
+</web-app>

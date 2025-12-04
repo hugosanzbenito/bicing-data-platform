@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<script src="main.js"></script>
+	<style>
+	        body {
+	            font-family: Arial, sans-serif;
+	            display: flex;
+	            justify-content: center;
+	            align-items: center;
+	            /*height: 100vh;*/
+	            background-color: #f4f4f4;
+	            flex-direction: column;
+	        }
+	        button {
+	            margin: 10px;
+	            padding: 15px 20px;
+	            border: none;
+	            border-radius: 5px;
+	            cursor: pointer;
+	            font-size: 16px;
+	            background-color: #007bff;
+	            color: white;
+	        }
+	        button:hover {
+	            background-color: #0056b3;
+	        }
+	    </style>
+	<TITLE>Test</TITLE></HEAD>
+	
+<BODY BGCOLOR="#FDF5E6">
+	<h2>Gestion de Estaciones y Clientes</h2>
+	    <button onclick="get_stations()">Get Stations</button>
+	    <button href=""onclick="window.location.href='subscribe.html'">Subscribe Clients to Stations</button>
+	    <button onclick="get_clients()">Get Clients</button>
+	    <button onclick="get_air_quality()">Notify air quality by IP</button>
+	    <button href=""onclick="window.location.href='freeslots.html'">Notify free slots</button>
+	<div>
+		
+		
+		<h2>Station List</h2>
+		<div id="show-stations">
+			No stations or clients
+		</div>
+		<h2>Air Quality</h2>
+		<div id="show-air_quality">
+			
+		</div>
+		
+	</div>
+	
+	<div>
+		
+	</div>
+</BODY>
+</HTML>
