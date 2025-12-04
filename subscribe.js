@@ -10,8 +10,7 @@ function load_stations() {
             let tableHTML = `<table border="1" style="border-collapse: collapse; width: 100%; text-align: center;">
                 <thead>
                     <tr style="background-color: #007bff; color: white;">
-                        <th>Estación</th>
-                        <th>Seleccionar</th>
+                        <th>Estación</th><th>Seleccionar</th>
                     </tr>
                 </thead>
                 <tbody id="stationsBody">`;
@@ -28,26 +27,21 @@ function load_stations() {
             document.getElementById('stationsContainer').innerHTML = tableHTML;
         }
     };
-    xmlhttp.open("GET", "/at-lab-0.1/at/stations", true);
+    xmlhttp.open("GET", "/at/stations", true);
     xmlhttp.send();
 }
 
-// No sobrescribir window.onload
-window.addEventListener('load', load_stations);
+window.onload = load_stations;
 
 function filterStations() {
     const filter = document.getElementById('searchInput').value.trim();
     const rows = document.querySelectorAll("#stationsBody .station-row");
-
     rows.forEach(row => {
         const checkbox = row.querySelector('.station-checkbox');
         if (!checkbox) return;
-        const stationNumber = checkbox.value.toString();
-        row.style.display = (filter === "" || stationNumber.startsWith(filter)) ? "table-row" : "none";
+        row.style.display = (!filter || checkbox.value.startsWith(filter)) ? "table-row" : "none";
     });
 }
-
-document.getElementById('searchInput').addEventListener('input', filterStations);
 
 function subscribeClient() {
     const name = document.getElementById("clientName").value;
@@ -55,30 +49,30 @@ function subscribeClient() {
     const checkboxes = document.querySelectorAll('.stations-container input[type="checkbox"]');
     const selectedStations = [];
 
-    checkboxes.forEach((checkbox) => {
+    checkboxes.forEach(checkbox => {
         if (checkbox.checked) {
             const station = stations.find(s => s.station_id == checkbox.value);
             if (station) selectedStations.push(station);
         }
     });
 
-    if (name === "" || phone === "") {
+    if (!name || !phone) {
         alert("Por favor, completa todos los campos.");
         return;
     }
 
-    fetch("/at-lab-0.1/at/clients/add", {
+    fetch("/at/clients/add", {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=UTF-8" },
-        body: JSON.stringify({ id: 0, phone: phone, name: name, stations: selectedStations })
+        body: JSON.stringify({ id: 0, phone, name, stations: selectedStations })
     })
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
         alert(`Cliente: ${name}\nTeléfono: ${phone}\nEstaciones seleccionadas: ${selectedStations.map(s => s.station_id).join(', ')}`);
         window.location.href = "index.html";
     })
-    .catch(error => {
-        console.error("Error:", error);
+    .catch(err => {
+        console.error(err);
         alert("Error al suscribirse. Inténtalo de nuevo.");
     });
 }
